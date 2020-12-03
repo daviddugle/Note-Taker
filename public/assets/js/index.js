@@ -1,3 +1,13 @@
+var express = require("express");
+var app = express();
+// var fs = require("fs");
+
+var path = require("path");
+
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
