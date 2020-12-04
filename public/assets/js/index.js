@@ -1,18 +1,13 @@
-var express = require("express");
-var app = express();
-// var fs = require("fs");
-
-var path = require("path");
-
-// Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
 const $noteList = $(".list-container .list-group");
+
+
+
+
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
@@ -159,3 +154,5 @@ $noteText.on("keyup", handleRenderSaveBtn);
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();
+
+
