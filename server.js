@@ -38,10 +38,25 @@ app.post("/api/notes", function (req, res) {
     var newNotation = req.body;
     //need to find a way to have an id for a new note
 
+    newNotation.id = newNotation.title.replace(/\s+/g, "").toLowerCase() + "id";
+
 
     dataBase.push(newNotation);
 
     //use an fs write file to write in the json
+
+    const OUTPUT_DIR = path.resolve(__dirname, "db");
+    const outputPath = path.join(OUTPUT_DIR, ".\\db.json");
+
+
+
+
+    console.log(typeof newNotation);
+
+
+    fs.writeFile(outputPath, JSON.stringify(dataBase), (err) =>
+        err ? console.error(err) : console.log('Success!')
+    );
 
     res.send("Success!")
 });
@@ -50,7 +65,19 @@ app.post("/api/notes", function (req, res) {
 //now I need to delete items from the list
 
 
+app.delete("/api/notes/:title", function (req, res) {
+    var chosen = req.params.title;
+    console.log(chosen);
 
+
+
+
+    fs.writeFile(outputPath, JSON.stringify(dataBase), (err) =>
+        err ? console.error(err) : console.log('Success!')
+    );
+
+
+})
 
 
 
