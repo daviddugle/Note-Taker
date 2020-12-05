@@ -37,10 +37,12 @@ app.get("*", function (req, res) {
 app.post("/api/notes", function (req, res) {
     var newNotation = req.body;
     //need to find a way to have an id for a new note
+    for (let i=0;i<dataBase.length;i++){
 
-    newNotation.id = newNotation.title.replace(/\s+/g, "").toLowerCase() + "id";
-
-
+        newNotation.id = i;
+    
+    
+    };
     dataBase.push(newNotation);
 
     //use an fs write file to write in the json
@@ -65,8 +67,9 @@ app.post("/api/notes", function (req, res) {
 //now I need to delete items from the list
 
 
-app.delete("/api/notes/:title", function (req, res) {
-    var chosen = req.params.title;
+app.delete("/notes/:title", function (req, res) {
+    var chosen = req.body;
+    
     console.log(chosen);
 
 
