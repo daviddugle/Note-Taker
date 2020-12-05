@@ -34,6 +34,9 @@ app.get("*", function (req, res) {
 
 //let's post the info
 
+const OUTPUT_DIR = path.resolve(__dirname, "db");
+const outputPath = path.join(OUTPUT_DIR, ".\\db.json");
+
 app.post("/api/notes", function (req, res) {
     var newNotation = req.body;
     //need to find a way to have an id for a new note
@@ -41,17 +44,10 @@ app.post("/api/notes", function (req, res) {
 
         newNotation.id = i;
     
-    
     };
     dataBase.push(newNotation);
 
     //use an fs write file to write in the json
-
-    const OUTPUT_DIR = path.resolve(__dirname, "db");
-    const outputPath = path.join(OUTPUT_DIR, ".\\db.json");
-
-
-
 
     console.log(typeof newNotation);
 
@@ -67,19 +63,23 @@ app.post("/api/notes", function (req, res) {
 //now I need to delete items from the list
 
 
-app.delete("/notes/:title", function (req, res) {
-    var chosen = req.body;
+app.delete("/api/notes/:id", function (req, res) {
+    var chosen = req.params.id;//setting the variable for the id that was clicked upon
+    console.log(chosen); //checking my work and this is showing the id of the deleted item being checked
     
-    console.log(chosen);
 
-
-
-
+    for (let k=0;k<dataBase.length;k++){
+        if (chosen == dataBase[k].id){
+            console.log(dataBase[k])
+            dataBase.splice(k,1) //dataBase is the array
+        }
+        
+    };
+    
     fs.writeFile(outputPath, JSON.stringify(dataBase), (err) =>
-        err ? console.error(err) : console.log('Success!')
+        err ? res.sendStatus(404) : res.sendStatus(200)
     );
-
-
+    
 })
 
 
