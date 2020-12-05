@@ -61,7 +61,7 @@ This is a simple note taker app that is deployed to Heroku. You enter your notes
 
 ## Deployed
 
-<a href='https://git.heroku.com/note-taker-daviddugle.git' target='_blank'>Deployed Link</a>
+<a href='https://note-taker-daviddugle.herokuapp.com/' target='_blank'>Deployed Link</a>
 
 
 
